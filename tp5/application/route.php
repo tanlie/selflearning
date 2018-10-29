@@ -17,5 +17,6 @@ Route::get('getuser','xiaochengxu/UserController/getUser');
 Route::get('getuser2','xiaochengxu/UserController/getUser2');
 
 
-Route::any('gettoken','xiaochengxu/TokenController/getToken');
-Route::any('verifytoken','xiaochengxu/TokenController/verifyToken');
+Route::any('getToken','xiaochengxu/TokenController/getToken');
+Route::any('verifyToken','xiaochengxu/TokenController/verifyToken');
+Route::post('updateUserInfo','xiaochengxu/TokenController/updateUserInfo');

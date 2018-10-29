@@ -14,11 +14,11 @@ use app\libs\validate\BaseValidate;
 class GetTokenValidate extends BaseValidate
 {
     protected $rule = [
-        'openId' => 'require'
+        'code' => 'require'
     ];
 
     protected $message = [
-        'openId' => '没有openid不能给你token啊~'
+        'code' => '没有openid不能给你token啊~'
     ];
 
 }

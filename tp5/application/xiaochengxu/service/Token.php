@@ -11,23 +11,48 @@ namespace app\xiaochengxu\service;
 
 use app\libs\exception\ParameterException;
 use think\Cache;
+use think\Exception;
 
 class Token
 {
-    private $openId;
-    public  function get($openId)
+    private $code;
+    private $appid = 'wx7504d96591a979f6';
+    private $appSecret = '764f0f12fe25cac3ff4f20cffd24b0c0';
+    private $loginUrl = "https://api.weixin.qq.com/sns/jscode2session?".
+                        "appid=%s&secret=%s&js_code=%s&grant_type=authorization_code";
+
+    public  function get($code)
     {
-        $this->openId = $openId;
-        $wxResult = [
-            'openid' => 'XXXXX',
-            'nickName' => 'tanlie',
-            'city' => 'zhongshan'
-        ]; //获取微信返回结果
+        $this->code = $code;
+        $wxResult = $this->getWxResult(); //获取微信返回结果
         $user_id = 1;       //数据库中用户的ID
         //组装缓存数据
         $cachedValue = $this->prepareCachedValue($wxResult,$user_id);
         $token = $this->saveToCache($cachedValue);
-        return $token;
+        $out['session_key'] = $wxResult['session_key'];
+        $out['openid'] =  $wxResult['openid'];
+        $out['unionid'] = $wxResult['unionid'];
+        $out['token'] = $token;
+        return $out;
+    }
+
+    public function getWxResult()
+    {
+        $login_url = sprintf($this->loginUrl,$this->appid,$this->appSecret,$this->code);
+        $res = curl_get($login_url);
+        $res = json_decode($res,true);
+
+        if(empty($res)){
+            throw new Exception('获取access_token及Openid失败');
+        }
+        $loginFail = array_key_exists('errcode',$res);
+        if($loginFail){
+            //登录失败
+
+        } else {
+            //登录成功
+            return $res;
+        }
     }
 
 

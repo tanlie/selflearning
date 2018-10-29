@@ -7,14 +7,16 @@ var home = new Home();
 
 Page({
   data: {
-  
+    showModel : true
   },
   //事件处理函数
   bindViewTap: function() {
    
   },
   onLoad: function () {
-    
+    var test = wx.getStorageSync('token');
+    var openid = wx.getStorageSync('openid');
+    console.log(openid);
   },
 
   //初始化数据

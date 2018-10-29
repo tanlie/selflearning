@@ -4,9 +4,9 @@ import { Base } from '../../utils/base.js';
 
 class Home extends Base{
   //构造函数
-  //constructor(){
-  //  super();
-  //}
+    constructor(){
+    super();
+  }
 
   //向后台获取信息举例
   getUserData(callback){

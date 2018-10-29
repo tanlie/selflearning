@@ -8,12 +8,12 @@
 
 namespace app\xiaochengxu\controller;
 
+use app\xiaochengxu\service\Token as TokenService;
 use app\xiaochengxu\validate\GetTokenValidate;
 use think\Cache;
 use think\Request;
-use app\xiaochengxu\service\Token as TokenService;
 
-class TokenController
+class TokenController extends BaseController
 {
      public function getToken(Request $request)
      {
@@ -21,12 +21,11 @@ class TokenController
         $validate->goCheck();
         $params = $request->param();
         $params = $validate->getDataByRule($params);
-        $openId = $params['openId'];
+        $code = $params['code'];
         $tokenService = new TokenService();
-        $token = $tokenService->get($openId);
+        $out = $tokenService->get($code);
         $out['code'] = '200';
         $out['msg'] = 'success';
-        $out['token'] = $token;
         return json($out,200);
      }
 
@@ -45,5 +44,20 @@ class TokenController
         }
         return json_encode($out,JSON_UNESCAPED_UNICODE);
      }
+
+     public function updateUserInfo(Request $request)
+     {
+         $token = $request->header('token');
+         $this->checkToken($token);
+         $params = $request->param();
+         setLogs('userInfo',json_encode($params));
+         
+
+     }
+
+
+
+
+
 
 }
