@@ -10,3 +10,23 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+
+function setLogs($file_name,$json_data){
+    $file = "logs\\".$file_name.".log";
+    $data = "\n\n$file_name".date('Y-m-d H:i:s')."\n".$json_data;
+    file_put_contents($file,$data,FILE_APPEND);
+}
+
+function getRandChar($length)
+{
+    $str = null;
+    $strPol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+    $max = strlen($strPol) - 1;
+
+    for ($i = 0;
+         $i < $length;
+         $i++) {
+        $str .= $strPol[rand(0, $max)];
+    }
+    return $str;
+}

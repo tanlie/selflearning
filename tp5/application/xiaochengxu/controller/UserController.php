@@ -10,12 +10,15 @@ namespace app\xiaochengxu\controller;
 
 
 use think\Controller;
+use think\Request;
 
-class User extends Controller
+class UserController extends Controller
 {
-
     public function getUser()
     {
+        $request = Request::instance();
+        $token = $request->header('token');
+        setLogs('token',json_encode($token));
         $out['code'] = 200;
         $out['msg'] = 'success';
         $out['data'] = [

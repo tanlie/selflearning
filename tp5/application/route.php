@@ -11,5 +11,11 @@
 
 use think\Route;
 
-Route::get('getuser','xiaochengxu/User/getUser');
-Route::get('getuser2','xiaochengxu/User/getUser2');
+
+
+Route::get('getuser','xiaochengxu/UserController/getUser');
+Route::get('getuser2','xiaochengxu/UserController/getUser2');
+
+
+Route::any('gettoken','xiaochengxu/TokenController/getToken');
+Route::any('verifytoken','xiaochengxu/TokenController/verifyToken');
