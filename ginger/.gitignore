@@ -1,0 +1,8 @@
+.idea
+composer.lock
+*.log
+*.xml
+*.iml
+*.pyc
+/logs
+
