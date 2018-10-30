@@ -1,9 +1,8 @@
 from flask import Blueprint
-from app.api.v1 import user, book
+from app.api.v1 import book, user
 
 def create_blueprint_v1():
-
-    bp_v1 = Blueprint('v1',__name__)
+    bp_v1 = Blueprint('v1',__name__,url_prefix='/v1')
+    book.api.register(bp_v1,'/book')
     user.api.register(bp_v1)
-    book.api.register(bp_v1, '/book')
     return bp_v1
