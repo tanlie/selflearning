@@ -12,9 +12,11 @@ class Redprint:
         return decorator
 
 
-    def register(self,bp,url_pre_fix=None):
+    def register(self,bp,url_prefix=None):
         for f, rule, options in self.mound:
             endpoint = options.pop("endpoint", f.__name__)
-            bp.add_url_rule( url_pre_fix + rule, endpoint, f, **options)
-
+            if (url_prefix):
+                bp.add_url_rule( url_prefix + rule, endpoint, f, **options)
+            else:
+                bp.add_url_rule(rule, endpoint, f, **options)
         pass

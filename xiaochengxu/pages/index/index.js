@@ -2,7 +2,9 @@
 //获取应用实例
 const app = getApp()
 //引入模型类，并实例化
-import { Home } from 'index-model.js';
+import { Home } from 'index-model.js'; 
+import { hexMD5 } from '../../utils/md5.js';
+import { arrSort } from '../../utils/sort.js';
 var home = new Home();
 
 Page({
@@ -14,9 +16,14 @@ Page({
    
   },
   onLoad: function () {
-    var test = wx.getStorageSync('token');
-    var openid = wx.getStorageSync('openid');
-    console.log(openid);
+    var test = {
+      name : "tanlie",
+      age : "30",
+      city : "beijing",
+      ccy : "test"
+    };
+    var f = arrSort(test);
+      console.log(f);
   },
 
   //初始化数据

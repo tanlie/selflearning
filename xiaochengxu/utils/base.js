@@ -19,6 +19,8 @@ class Base {
           url = params.url;
       }
 
+      
+
       wx.request({
         url: url,
         data : params.data,
