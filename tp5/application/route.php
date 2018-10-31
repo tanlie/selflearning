@@ -12,8 +12,8 @@
 use think\Route;
 
 /*创建用户*/
-Route::post('createUser','xiaochengxu/UserController/createUser');
-
+Route::post('register','xiaochengxu/UserController/register');
+Route::post('getmsgcode','xiaochengxu/UserController/getMsgCode');
 
 
 

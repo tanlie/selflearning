@@ -37,14 +37,15 @@ class ExceptionHandler extends Handle
                 $this->errorMsg = '未知的服务器错误';
             }
         }
-        $out['return_code'] = $this->code;
-        $out['msg'] = $this->msg;
         //$out['errorCode'] = $this->errorCode;
+        //$out['errorMsg'] = $this->errorMsg;
+        $out['return_code'] = $this->code;
+        $out['return_msg'] = $this->msg;
         $out['data'] = '';
-        $out['errorMsg'] = $this->errorMsg;
+        $out['timestamp'] = strval(time());
         $out['requestUrl'] = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
         //必要时，此处可以添加签名字段
-        $key = '123456789';
+        $key = config('secure.xiaochengxukey');
         $sign = SignController::createSign($out,$key);
         $out['sign'] = $sign;
         setLogs('request_error',json_encode($out,JSON_UNESCAPED_UNICODE));

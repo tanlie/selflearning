@@ -7,21 +7,93 @@
  */
 
 namespace app\xiaochengxu\controller;
+use app\libs\SignatureHelper;
 use app\xiaochengxu\validate\CreateUserValidate;
+use think\Exception;
 use think\Request;
+use app\xiaochengxu\model\Users as UsersModel;
 
 class UserController extends BaseController
 {
 
-    public function createUser(Request $request)
+
+    public function register(Request $request)
     {
         $validate = new CreateUserValidate();
         $validate->goCheck();
         $params = $request->param();
         $params = $validate->getDataByRule($params);
-        var_dump($params);
+        $user = new UsersModel();
+        $token = $user->create_user($params);
+
+        $out['return_code'] = 0;
+        $out['return_msg'] = 'success';
+        $out['data']['token'] = $token;
+        $key = config('secure.xiaochengxukey');
+        $out['sign'] = SignController::createSign($out,$key);
+        return json_encode($out);
     }
 
+    public function getMsgCode(Request $request)
+    {
+        $params = $request->param();
+        $mobile = $params['mobile'];
+        $msg_code = rand(1000,9999);
+        $this->sendAliyunSms($mobile,$msg_code);
+        $out['return_code'] = 0;
+        $out['return_msg'] = 'success';
+        $out['timestamp'] = strval(time());
+        $out['data']['msg_code'] = $msg_code;
+        $key = config('secure.xiaochengxukey');
+        $out['sign'] = SignController::createSign($out,$key);
+        return json_encode($out);
+    }
+
+    public function sendAliyunSms($mobile, $code)
+    {
+        $params = array ();
+        // 必填: 请参阅 https://ak-console.aliyun.com/ 取得您的AK信息
+        $accessKeyId = config('msgsetting.aliyunmsgid');
+        $accessKeySecret = config('msgsetting.aliyunmsgkey');
+        //  必填: 短信接收号码
+        $params["PhoneNumbers"] = $mobile;
+        //  必填: 短信签名，应严格按"签名名称"填写，请参考: https://dysms.console.aliyun.com/dysms.htm#/develop/sign  万象云端
+        $params["SignName"] = config('msgsetting.aliyunmsgsignname');
+        //  必填: 短信模板Code，应严格按"模板CODE"填写, 请参考: https://dysms.console.aliyun.com/dysms.htm#/develop/template
+        $params["TemplateCode"] = config('msgsetting.aliyunmsgTempId');
+        //  可选: 设置模板参数, 假如模板中存在变量需要替换则为必填项
+        $params['TemplateParam'] = Array (
+            "code" => $code
+        );
+        // *** 需用户填写部分结束, 以下代码若无必要无需更改 ***
+        if(!empty($params["TemplateParam"]) && is_array($params["TemplateParam"])) {
+            $params["TemplateParam"] = json_encode($params["TemplateParam"], JSON_UNESCAPED_UNICODE);
+        }
+
+        $helper = new SignatureHelper();
+        try{
+            $content = $helper->request(
+                $accessKeyId,
+                $accessKeySecret,
+                "dysmsapi.aliyuncs.com",
+                array_merge($params, array(
+                    "RegionId" => "cn-zhongshan",
+                    "Action" => "SendSms",
+                    "Version" => "2017-05-25",
+                ))
+            //  选填: 启用https
+            // ,true
+            );
+            $content = (array)$content;
+            if($content['Message']=='OK'){
+                return json('success');
+            } else {
+                return json_encode($content,JSON_UNESCAPED_UNICODE);
+            }
+        }   catch (Exception $ex) {
+            throw  $ex;
+        }
+    }
 
 
 

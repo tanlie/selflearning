@@ -14,13 +14,15 @@ use app\libs\validate\BaseValidate;
 class CreateUserValidate extends BaseValidate
 {
     protected $rule = [
+        'code' => 'require',
         'user_name' => 'require|length:4,100',
         'pass_word' => 'require|length:4,100',
         'mobile' => 'require|isMobile',
         'timestamp' => 'require',
-        'sign' => 'require|isSignRight',
+        'sign' => 'require', //isSignRight
     ];
     protected $message = [
+        'code' => '请带code',
         'user_name' => '用户名不能为空，长度为4-100位~',
         'pass_word' => '密码不能为空，长度为4-100位~',
         'mobile' => '手机号码不正确',

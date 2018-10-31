@@ -14,10 +14,30 @@ App({
       success: res => {
         var that = this;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        myapp.setToken(res.code,(data)=>{
-            wx.setStorageSync('openid', data.openid)
-            wx.setStorageSync('access_key', data.access_key)
-        });
+        var params = {
+          url : 'getmsgcode',
+          
+          type : 'POST',
+          data : {
+            mobile: '13811589793',
+            timestamp : '123456',
+            sign : 'sdfsdfsdsdf'
+          },
+          
+          sCallback : function(res){
+            console.log(res);
+          }
+        };
+
+        myapp.request(params);
+
+
+
+
+        //myapp.setToken(res.code,(data)=>{
+        //    wx.setStorageSync('openid', data.openid)
+        //    wx.setStorageSync('access_key', data.access_key)
+        //});
       }
     })
     // 获取用户信息
