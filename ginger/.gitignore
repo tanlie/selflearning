@@ -1,5 +1,6 @@
 .idea
 composer.lock
+.vscode
 *.log
 *.xml
 *.iml

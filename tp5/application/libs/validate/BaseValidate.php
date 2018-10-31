@@ -66,6 +66,44 @@ class BaseValidate extends Validate
         }
     }
 
+    protected function createSign($key)
+    {
+        $request = Request::instance();
+        $params = $request->param();
+        ksort($params);
+        $string = $this->ToUrlParams($params);
+        $string = $string."&key=".$key;
+        $string = preg_replace('# #','',$string);
+        //setLogs('request_error',$string);
+        $result = md5($string);
+        //$result = strtolower($result);;
+        return $result;
+
+    }
+
+    protected function ToUrlParams($params)
+    {
+        $buff = "";
+        foreach ($params as $k => $v)
+        {
+            // if($k != "sign" && $v != "" && !is_array($v)){
+            if($k != "sign" && !is_array($v)){
+                $buff .= $k . "=" . $v . "&";
+            }
+
+            if(is_array($v)){
+                $temp = json_encode($v);
+                $buff .= $k . "=" . $temp . "&";
+            }
+        }
+        $buff = trim($buff, "&");
+        return $buff;
+    }
+
+
+
+
+
 
 
 

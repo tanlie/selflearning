@@ -7,10 +7,31 @@
  */
 
 namespace app\xiaochengxu\controller;
+use app\xiaochengxu\validate\CreateUserValidate;
 use think\Request;
 
 class UserController extends BaseController
 {
+
+    public function createUser(Request $request)
+    {
+        $validate = new CreateUserValidate();
+        $validate->goCheck();
+        $params = $request->param();
+        $params = $validate->getDataByRule($params);
+        var_dump($params);
+    }
+
+
+
+
+
+
+
+
+
+
+
     public function getUser()
     {
         $request = Request::instance();

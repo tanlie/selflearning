@@ -11,6 +11,11 @@
 
 use think\Route;
 
+/*创建用户*/
+Route::post('createUser','xiaochengxu/UserController/createUser');
+
+
+
 
 
 Route::get('getuser','xiaochengxu/UserController/getUser');

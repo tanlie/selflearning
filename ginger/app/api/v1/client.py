@@ -1,7 +1,6 @@
 from flask import request
 
 from app.libs.enums import ClientTypeEnums
-from app.libs.error_code import ClientTypeError
 from app.libs.redprint import Redprint
 from app.models.user import User
 from app.validators.forms import ClientForm, UserEmailForm
@@ -11,17 +10,15 @@ api = Redprint('client')
 @api.route('/register', methods=['POST'])
 def create_client():
     data = request.json
-    form = ClientForm(data=data)
-    if form.validate():
-        promise = {
-            ClientTypeEnums.USER_EMAIL : __register_user_by_email,
-            ClientTypeEnums.USER_MINA : __register_user_by_mina
-        }
-        promise[form.type.data]()
-    else:
-        raise ClientTypeError()
+    form = UserEmailForm(data=data)
+    form.validate()
+    promise = {
+        ClientTypeEnums.USER_EMAIL : __register_user_by_email,
+        ClientTypeEnums.USER_MINA : __register_user_by_mina
+    }
+    res = promise[form.type.data]()
 
-    return 'success'
+    return 'h'
 
 
 
@@ -32,6 +29,7 @@ def __register_user_by_email():
         User.register_by_email(form.nickname.data,
                                form.account.data,
                                form.secret.data)
+    return 'success'
 
 
 #通过 小程序登录用户
