@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>socket</title>
+</head>
+<body>
+
+
+
+
+<script src='https://cdn.bootcss.com/socket.io/2.0.3/socket.io.js'></script>
+<script>
+    var socket = io('http://192.168.1.147:3120');
+    socket.on('connect', function(){
+        console.log('connect success');
+    });
+    socket.on('chat',function(msg){
+        console.log(msg);
+    });
+
+
+</script>
+</body>
+</html>

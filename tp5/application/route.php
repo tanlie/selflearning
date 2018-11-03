@@ -12,8 +12,9 @@
 use think\Route;
 
 /*创建用户*/
-Route::post('register','xiaochengxu/UserController/register');
+Route::post('v1/register','xiaochengxu/UserController/register');
 Route::post('getmsgcode','xiaochengxu/UserController/getMsgCode');
+
 
 
 
@@ -25,3 +26,5 @@ Route::get('getuser2','xiaochengxu/UserController/getUser2');
 Route::any('getToken','xiaochengxu/TokenController/getToken');
 Route::any('verifyToken','xiaochengxu/TokenController/verifyToken');
 Route::post('updateUserInfo','xiaochengxu/TokenController/updateUserInfo');
+
+Route::get('socket.io','socket/Index/index');

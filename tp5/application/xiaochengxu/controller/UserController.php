@@ -25,7 +25,6 @@ class UserController extends BaseController
         $params = $validate->getDataByRule($params);
         $user = new UsersModel();
         $token = $user->create_user($params);
-
         $out['return_code'] = 0;
         $out['return_msg'] = 'success';
         $out['data']['token'] = $token;
