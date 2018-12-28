@@ -1,0 +1,19 @@
+.weui-cells{
+  margin-bottom: 70px;
+}
+.weui-cell__bd{
+  line-height: 20px;
+}
+.weui-cell_access .weui-cell__ft {
+  color:red;
+  font-size: 13px;
+}
+
+.box2{
+  padding: 10px 15px;
+  position: fixed;
+  bottom: 1px;
+  left: 0;
+  right:0;
+  height: 45px;
+}

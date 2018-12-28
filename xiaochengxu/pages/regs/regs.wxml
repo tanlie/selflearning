@@ -1,0 +1,70 @@
+<view class="page__bd">
+ <form bindsubmit='onReg'>
+  <view class='reg-box-group'>
+    <view class="weui-cells weui-cells_after-title reg-box">
+      <view class="weui-cell">
+          <view class="weui-cell__hd">
+            <image class='img-logo img64' src='../../lib/img/logo.png'></image>
+          </view>
+          <view class="weui-cell__bd">
+            <view class='com-name'>万象云端</view>
+            <view class='f12 f-888'>...</view>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+              <view class="weui-label"><text class='f-red'>* </text>姓名</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="weui-input" bindinput='bindInput' data-name="userName" placeholder="请填写真实姓名以便审核"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+              <view class="weui-label"><text class='f-red'>* </text>密码</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="weui-input" type='password' bindinput='bindInput' data-name="password" placeholder="请填写"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+              <view class="weui-label"><text class='f-red'>* </text>确认密码</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="weui-input" type='password' bindinput='bindInput' data-name="rePassword" placeholder="请填写"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_input" style='padding-top:20px'>
+          <view class="weui-cell__hd">
+              <view class="weui-label"><text class='f-red'>* </text>手机号码</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="weui-input" bindinput='bindInput' data-name="mobile" placeholder="请填写"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text class='f-red'>* </text>验证码</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput='bindInput' data-name="msgCode" placeholder="请填写" />
+        </view>
+        <view class="weui-cell__ft">
+            <button class="weui-btn mini-btn" bindtap='getMsgCode' type="blue" size="mini" plain="true">获取验证码</button>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__hd"></view>
+        <view class="weui-cell__bd"></view>
+      </view>
+      <button class="weui-btn" type="warn" form-type='submit'>提 交</button>
+    </view>
+  </view>
+  </form>
+</view>
+<import src="../../lib/template/tool.wxml" />
+<view class='footer'>
+  <template is="comFooter" data="{{...comfooter}}"/>
+  
+</view>

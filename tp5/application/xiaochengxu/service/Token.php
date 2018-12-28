@@ -21,19 +21,45 @@ class Token
     private $loginUrl = "https://api.weixin.qq.com/sns/jscode2session?".
                         "appid=%s&secret=%s&js_code=%s&grant_type=authorization_code";
 
-    public  function get($code)
+    public static function generateTokenByUid($uid)
+    {
+        $key = self::generateToken();
+        $expire_in = config('secure.token_expire_time');
+        $result = cache($key, $uid, $expire_in);
+        if (!$result){
+            throw new ParameterException([
+                'msg' => '服务器缓存异常',
+                'errorCode' => 10005
+            ]);
+        }
+        return $key;
+    }
+
+    public function getUserIdByToken($token)
+    {
+        $user_id = Cache::get($token);
+        if($user_id){
+            return $user_id;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function get($code)
     {
         $this->code = $code;
         $wxResult = $this->getWxResult(); //获取微信返回结果
-        $user_id = 1;       //数据库中用户的ID
+        return $wxResult;
+        //$user_id = 1;       //数据库中用户的ID
         //组装缓存数据
-        $cachedValue = $this->prepareCachedValue($wxResult,$user_id);
-        $token = $this->saveToCache($cachedValue);
-        $out['session_key'] = $wxResult['session_key'];
-        $out['openid'] =  $wxResult['openid'];
-        $out['unionid'] = $wxResult['unionid'];
-        $out['token'] = $token;
-        return $out;
+        //$cachedValue = $this->prepareCachedValue($wxResult,$user_id);
+        //$token = $this->saveToCache($cachedValue);
+        //$out['session_key'] = $wxResult['session_key'];
+        //$out['openid'] =  $wxResult['openid'];
+        //$out['unionid'] = $wxResult['unionid'];
+        //$out['token'] = $token;
+        //return $out;
     }
 
     public function getWxResult()
@@ -48,7 +74,9 @@ class Token
         $loginFail = array_key_exists('errcode',$res);
         if($loginFail){
             //登录失败
-
+            throw new ParameterException([
+                'msg'=> json_encode($res,JSON_UNESCAPED_UNICODE)
+            ]);
         } else {
             //登录成功
             return $res;
@@ -62,7 +90,7 @@ class Token
     {
         $key = self::generateToken();
         $value = json_encode($cachedValue);
-        $expire_in = '20';
+        $expire_in = '7200';
         $result = cache($key, $value, $expire_in);
         if (!$result){
             throw new ParameterException([

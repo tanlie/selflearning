@@ -8,16 +8,29 @@
 
 
 
-
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src='https://cdn.bootcss.com/socket.io/2.0.3/socket.io.js'></script>
 <script>
-    var socket = io('http://192.168.1.147:3120');
-    socket.on('connect', function(){
-        console.log('connect success');
+
+        //localStorage.clear();
+        //localStorage.setItem('device_id','666008df');
+        //var test = localStorage.getItem('device_id');
+       Tool_SetCookie('device_id','66600255'); 
+       var test = Tool_GetCookie('device_id'); 
+        console.log(test);
+
+       
+    var socket = io('http://192.168.0.103:3120');
+    socket.on('connect', function(msg){
+        console.log('connection sucess');
+       socket.emit('66600241');
     });
     socket.on('chat',function(msg){
-        console.log(msg);
+       var msg = JSON.parse(msg);
+       //console.log(msg.device_id);
+       
     });
+
 
 
 </script>

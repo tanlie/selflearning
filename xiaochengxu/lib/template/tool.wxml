@@ -1,0 +1,34 @@
+<template name="comFooter">
+  <image src="../../lib/img/2.jpg" mode='widthFix'/>
+  <view class='ver'>
+    <text>版本：{{ver_no}}</text>
+    <text>服务热线：{{phone_no}}</text>
+  </view>
+</template>
+
+<template name="checkbox">
+      <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+          <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+          <view class="weui-cell__bd weui-check__hd_in-checkbox">
+              <icon class="weui-icon-checkbox_circle" type="circle" size="22" wx:if="{{!item.checked}}"></icon>
+              <icon class="weui-icon-checkbox_success" color="#e42112" type="success" size="22" wx:if="{{item.checked}}"></icon>
+              <text class='f13 f-888'>{{item.name}}</text>
+          </view>
+      </label>
+</template>
+<template name="radios">
+      <label class="weui-cell weui-check__label" wx:for="{{radios}}" wx:key="value">
+          <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}" disabled='{{item.disabled}}'/>
+          <view class="weui-cell__bd {{item.checked? 'checked':''}} {{item.disabled? 'desabled':''}}">{{item.name}}</view>
+      </label>
+</template>
+
+<template name="downLoad">
+  <view class="weui-loadmore" hidden="{{!downLoad}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+  <view class="weui-loadmore weui-loadmore_line" hidden="{{!downLoadOver}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无更多数据</view>
+  </view>
+</template>

@@ -1,0 +1,14 @@
+.info-box{
+  background-color: #b10801;
+  color:#fff;
+  padding-bottom: 5px; 
+}
+.info-box image{
+  border-radius: 50%;
+  border: solid 1px #fff;
+  background-color: #fff;
+  margin-right: 10px;
+}
+.time-bar{
+  margin-top: 5px;
+}

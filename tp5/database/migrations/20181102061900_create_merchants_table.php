@@ -32,6 +32,7 @@ class CreateMerchantsTable extends Migrator
         $table->addColumn('mch_id','integer',['comment'=>'关联设备表中的ID']);
         $table->addColumn('user_id','integer',['comment'=>'关联用户表中的ID']);
         $table->addColumn('agent_id','integer',['comment'=>'关联代理表中的ID']);
+        $table->addColumn('mch_status','float',['comment'=>'商户状态']);
         $table->addColumn('mch_proportion','float',['comment'=>'营收比例']);
         $table->addColumn('income','float',['default'=>0,'comment'=>'全部总收入']);
         $table->addColumn('last_modify','string',['null'=>true,'comment'=>'最新修改时间']);

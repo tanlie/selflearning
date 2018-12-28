@@ -1,0 +1,35 @@
+
+.box2{
+  padding: 50px 30px 10px 30px;
+  background-color: #fff;
+}
+.box2 .item1{
+  text-align: center;
+  margin-bottom: 50px;
+}
+.box2 .item1 image{
+  width:80px;height:80px;border-radius: 5px;border: solid 1px #eee;background-color: #f8f8f8;
+}
+.box2 .weui-cell{
+  margin-left: -12px
+}
+.box2 .weui-cell__hd{
+  width: 35px;
+}
+.box2 .weui-cell__hd image{
+  width:22px;height:22px;
+}
+.box2 .weui-check__label{
+  display:inline-block;width:130px;
+}
+.box2 .weui-check__hd_in-checkbox {
+  padding-right:0;margin-top:-5px;
+}
+.box2 .lnk-pwd{
+  margin: 10px 10px 0 0;
+}
+.box2 .regs{
+  display: inline-block;
+  margin: 25px 0 0 0;
+  width: 100%;
+}

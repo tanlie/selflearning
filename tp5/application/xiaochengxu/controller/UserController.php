@@ -7,34 +7,65 @@
  */
 
 namespace app\xiaochengxu\controller;
+use app\libs\exception\ParameterException;
+use app\xiaochengxu\service\Token as TokenService;
 use app\libs\SignatureHelper;
-use app\xiaochengxu\validate\CreateUserValidate;
+use app\xiaochengxu\validate\ChangePasswdValidate;
+use app\xiaochengxu\validate\GetMsgCodeValidate;
+use app\xiaochengxu\validate\IsUserValidate;
+use app\xiaochengxu\validate\LoginValidate;
+use app\xiaochengxu\validate\RegisterValidate;
+use think\Cache;
 use think\Exception;
 use think\Request;
 use app\xiaochengxu\model\Users as UsersModel;
 
 class UserController extends BaseController
 {
-
-
+    /*商户注册*/
     public function register(Request $request)
     {
-        $validate = new CreateUserValidate();
+        $validate = new RegisterValidate();
         $validate->goCheck();
         $params = $request->param();
         $params = $validate->getDataByRule($params);
         $user = new UsersModel();
-        $token = $user->create_user($params);
+        $user_id = $user->user_register($params);
+        $token = TokenService::generateTokenByUid($user_id);
         $out['return_code'] = 0;
         $out['return_msg'] = 'success';
         $out['data']['token'] = $token;
-        $key = config('secure.xiaochengxukey');
+        $key = $this->key;
+        $out['sign'] = SignController::createSign($out,$key);
+        return json_encode($out);
+    }
+    /*商户登录*/
+    public function login(Request $request)
+    {
+        $validate = new LoginValidate();
+        $validate->goCheck();
+        $params = $request->param();
+        $params = $validate->getDataByRule($params);
+        $user = new UsersModel();
+        $data = $user->user_login($params);
+        if(!$data){
+            throw new ParameterException([
+                'msg' => '用户不存在或者密码不正确~'
+            ]);
+        }
+        $out['return_code'] = 0;
+        $out['return_msg'] = 'success';
+        $out['data'] = $data;
+        $key = $this->key;
         $out['sign'] = SignController::createSign($out,$key);
         return json_encode($out);
     }
 
+    /*获取注册时的手机验证码*/
     public function getMsgCode(Request $request)
     {
+        $validate = new GetMsgCodeValidate();
+        $validate->goCheck();
         $params = $request->param();
         $mobile = $params['mobile'];
         $msg_code = rand(1000,9999);
@@ -43,10 +74,67 @@ class UserController extends BaseController
         $out['return_msg'] = 'success';
         $out['timestamp'] = strval(time());
         $out['data']['msg_code'] = $msg_code;
-        $key = config('secure.xiaochengxukey');
+        $key = $this->key;
         $out['sign'] = SignController::createSign($out,$key);
         return json_encode($out);
     }
+
+    /*判断用户是否存在*/
+    public function isUser(Request $request)
+    {
+        $validate = new IsUserValidate();
+        $validate->goCheck();
+        $params = $request->param();
+        $params = $validate->getDataByRule($params);
+        $token = new TokenService();
+        $wxResult = $token->get($params['code']);
+        $openid = $wxResult['openid'];
+        $res = UsersModel::where('openid',$openid)->find();
+        if(!$res){
+            throw new ParameterException([
+                'msg' => 'user does no exist'
+            ]);
+        }
+
+        $token = TokenService::generateTokenByUid($res->user_id);
+        $out['return_code'] = 0;
+        $out['return_msg'] = 'success';
+        $out['data']['token'] = $token;
+        $key = $this->key;
+        $out['sign'] = SignController::createSign($out,$key);
+        return json_encode($out);
+    }
+
+    /*用户修改密码*/
+    public function changePassWord(Request $request)
+    {
+        (new ChangePasswdValidate())->goCheck();
+        $token = $request->header('token');
+        $user_id = Cache::get($token);
+        if(!$user_id){
+            throw new ParameterException([
+                'msg' => 'token 无效或已过期~'
+            ]);
+        }
+        $passwd['pass_word'] = $request->param('new_pass_word');
+        $user = new UsersModel();
+        $res = $user->where('user_id',$user_id)->update($passwd);
+        $out['return_code'] = 0;
+        $out['return_msg'] = 'success';
+        $key = $this->key;
+        $out['sign'] = SignController::createSign($out,$key);
+        return json_encode($out);
+
+    }
+
+
+
+
+
+
+
+
+
 
     public function sendAliyunSms($mobile, $code)
     {
@@ -93,15 +181,6 @@ class UserController extends BaseController
             throw  $ex;
         }
     }
-
-
-
-
-
-
-
-
-
 
     public function getUser()
     {

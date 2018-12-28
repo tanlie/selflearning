@@ -1,0 +1,33 @@
+<import src="../../../lib/template/tool.wxml" />
+<view class="page__bd">
+  <view class='reg-box-group'>
+    <view class="weui-cells weui-cells_after-title reg-box">
+      <view class="weui-cell">
+          <view class="weui-cell__bd"><text class='f-red'>* </text>设备唯一码</view>
+          <view class="weui-cell__ft">83499</view>
+      </view>
+      <view class="weui-cell">
+          <view class="weui-cell__bd"><text class='f-red'>* </text>设备类型</view>
+          <view class="weui-cell__ft">街霸</view>
+      </view>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd"><text class='f-red'>* </text>投放地址</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">美宜佳</view>
+      </navigator>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class='title f-333'><text class='f-red'>* </text>请选择设备编号</view>
+          <view class='title f12'>编号用于启动设备，请按顺序填写，同一个投放地编码不可重复</view>
+          <radio-group bindchange="onSubsChange" class="radio-box">
+            <template is="radios" data="{{radios : subs}}"></template>
+          </radio-group>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd"></view>
+        <view class="weui-cell__ft"></view>
+      </view>
+      <button class="weui-btn" type="warn" bindtap="onReg">提 交</button>
+    </view>
+  </view>
+</view>

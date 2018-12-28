@@ -8,14 +8,13 @@
 
 namespace app\xiaochengxu\model;
 
-use app\xiaochengxu\service\Token as TokenService;
 use app\libs\exception\ParameterException;
-use app\xiaochengxu\controller\TokenController;
+use app\xiaochengxu\service\Token as TokenService;
 
 class Users extends BaseModel
 {
 
-    public  function create_user($params)
+    public  function user_register($params)
     {
         $exist = self::where('mobile',$params['mobile'])->find();
         if($exist){
@@ -25,12 +24,34 @@ class Users extends BaseModel
         } else {
             $token = new TokenService();
             $token_res = $token->get($params['code']);
-            $grant_token = $token_res['token'];
             $new_params = array_merge($token_res,$params);
-            unset($new_params['code'],$new_params['code']);
-            $res = self::allowField(true)->save($new_params);
-            return $grant_token;
+            unset($new_params['code']);
+            $res = self::allowField(true)->create($new_params);
+            return $res->user_id;
         }
+    }
+
+    public function user_login($params)
+    {
+        $res = self::where($params)->find();
+        if($res){
+            return $this->user_get_login_data($res->user_id);
+        } else {
+            return false;
+        }
+    }
+
+    public function user_get_login_data($user_id)
+    {
+        $token = TokenService::generateTokenByUid($user_id);
+        $out = [
+            'token' => $token,
+            'daily_income' => '30',
+            'total_income' => '298',
+            'device_count' => 5,
+            'device_online' => 2
+        ];
+        return $out;
     }
 
 

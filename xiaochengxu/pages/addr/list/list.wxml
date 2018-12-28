@@ -1,0 +1,31 @@
+<view class="page__bd">
+  <view class="weui-cells weui-cells_after-title">
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view class='f15'>美宜佳</view>
+            <view class='f12 f-888'>广东|中山市|港口镇 港富路25号</view>
+            <view class='f12 f-red'>商城</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">3台</view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view class='f15'>爱婴岛</view>
+            <view class='f12 f-888'>广东|中山市|港口镇 港富路25号 5卡</view>
+            <view class='f12 f-red'>商城</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">1台</view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+            <view class='f15'>港口市场</view>
+            <view class='f12 f-888'>广东|中山市|港口镇 港口南路40号</view>
+            <view class='f12 f-red'>市场</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">5台</view>
+      </navigator>
+  </view>
+  <view class='box2'>
+    <button class="weui-btn" type="warn">添加投放地址</button>
+  </view>
+</view>

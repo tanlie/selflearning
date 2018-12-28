@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>万象云端后台管理</title>
+
+<link href="/static/css/login.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/static/layui/css/layui.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="login">
+    <div class=" png" >  <!--<div class="box png">-->
+		<div class="logo png"></div>
+		<div class="input">
+			<div class="log">
+				<form class="forms" method="post" action="{:url('checkAdmin')}">
+				<div class="name">
+					<label>用户名</label><input  style="height: 24px;" type="text" class="text" id="admin_user" placeholder="用户名" name="admin_user" tabindex="1">
+				</div>
+				<div class="pwd">
+					<label>密　码</label><input style="height: 24px;" type="password" class="text" id="admin_pass" placeholder="密码" name="admin_pass" tabindex="2">
+				</div>
+
+				<div class="pwd">
+					<label>验证码</label>
+					<input type="text" style="height: 24px; width: 66px;" class="text" id="" placeholder="验证码" name="verify" tabindex="2">
+					<img src="{:url('verify')}" id="varify" alt="captcha" style="width: 150px;"  onclick="this.src=this.src+'?'" />
+					<input type="button" class="submit" tabindex="3" value="登录" id="submit">
+				</div>
+				<div>
+
+					<div class="check"></div>
+				</div>
+
+				<div class="tip"></div>
+				</form>
+			</div>
+		</div>
+	</div>
+    <div class="air-balloon ab-1 png"></div>
+	<div class="air-balloon ab-2 png"></div>
+    <div class="footer"></div>
+</div>
+
+ <script type="text/javascript" src="/static/js/jQuery.js"></script>
+<!--<script type="text/javascript" src="/static/layui/fun.base.js"></script>-->
+<script type="text/javascript" src="/static/js/fun.base.js"></script>
+<script type="text/javascript" src="/static/js/login.js"></script>
+<script type="text/javascript" src="/static/js/mylogin.js"></script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p style="font-size: 18px;">本系统由万象云端科技有限公司提供技术支持©版权所有</p>
+</div>
+
+<script type="text/javascript">
+	function reflash() {
+        document.getElementById('varify').src= "{:url('verify')}";
+    }
+
+</script>
+
+</body>
+</html>

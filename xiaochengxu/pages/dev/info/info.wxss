@@ -1,0 +1,7 @@
+
+.reg-box .weui-cell{
+  padding: 15px 10px;
+}
+.radio-box .weui-cell{
+  padding: 0;
+}

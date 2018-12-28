@@ -1,10 +1,292 @@
-/**app.wxss**/
-.container {
+/*引入weui*/
+@import 'lib/css/weui.wxss';
+/*@import 'lib/css/skyvow.wxss';*/
+
+page {
+  width:100%;
   height: 100%;
+  position:relative;
+  color:#333;
+  background-color:#f8f8f8;
+  font-size:16px;
+  font-family:-apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  -ms-text-size-adjust:100%;
+  -webkit-text-size-adjust:100%;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.weui-cell__hd image{
+  vertical-align:middle;width:22px;height:22px;margin-right: 5px;
+}
+.weui-cell__hd image.img32{
+  width:32px;height:32px;
+}
+.weui-cell__hd image.img64{
+  width:64px;height:64px;
+}
+.weui-cell_access .weui-cell__ft {
+  color:#333;
+}
+.weui-select{
+  padding-left: 0;
+  border: 0;
+  text-align: right;
+  padding-right: 22px;
+  overflow: hidden;
+}
+.weui-select:before{
+  right: 3px;
+}
+.noleft .weui-cell:before {
+  left: 0;
+}
+.weui-loadmore__tips_in-line{
+  background-color: #f8f8f8;
+}
+
+image{
+  width: 100%;
+}
+
+navigator{
+  color:#4183c4;
+}
+.navigator-hover {
+	color:blue;
+}
+
+/*自定义tab*/
+.custom-tabs{
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  background-color: #fff;
+}
+.custom-tabs .custom-tab{
+  -webkit-box-flex:1;
+  -webkit-flex:1;
+  flex:1;
+  text-align: center;
+  margin: 0 5px;
+  line-height: 15px;
+  font-size: 13px;
+  height: 50px;
+}
+.custom-tabs .custom-tab image{
+  width: 24px;
+  height:24px;
+  margin-top: 5px;
+}
+.custom-tabs .custom-tab.curr{
+  color: #e42112;
+  border-bottom: solid 1px #e42112;
+}
+
+/*标题*/
+.title{
+  padding: 5px 10px;
+  font-size: 13px;
+  color: #666;
+}
+
+/*footer*/
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right:0;
+  z-index: -1;
+}
+.footer .ver{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  text-align: right;
+}
+.footer .ver text{
+  display: block;
+  color:#c3c3c3;
+  font-size: 13px;
+}
+
+/*自定义button*/
+button[type=blue][plain] {
+  color:#4183c4;
+  border:1px solid #4183c4;
+  background-color:transparent;
+}
+.button-hover[type=blue][plain] {
+  color:blue;
+  border-color:blue;
+  background-color:transparent;
+}
+
+/*自定义输入box*/
+.reg-box-group{
+  padding: 15px;
+}
+.reg-box{
+  border-top: solid 2px #e42112;
+  font-size: 15px;
+  padding: 15px;
+  box-shadow: 0 0 5px 1px #e5e5e5;
+}
+.reg-box .weui-cell{
+  padding: 10px 0;
+}
+.reg-box .weui-cell:before {
+  left: 0;
+}
+.reg-box .weui-label{
+  font-size: 13px;
+  width: 75px;
+}
+
+/*自定义 radio group 块
+<radio-group bindchange="onSubsChange" class="radio-box">
+    <label class="weui-cell weui-check__label" wx:for="{{subs}}" wx:key="value">
+        <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}" disabled='{{item.disabled}}'/>
+        <view class="weui-cell__bd {{item.checked? 'checked':''}} {{item.disabled? 'desabled':''}}">{{item.name}}</view>
+    </label>
+</radio-group>
+*/
+.radio-box .weui-cell{
+  width: 25%;
+  padding: 0;
+  text-align: center;
+  float: left;
+  font-size: 13px;
+}
+.radio-box .weui-cell:before{
+  display: none;
+}
+.radio-box .weui-cell__bd{
+  padding: 3px 0;
+  margin: 5px;
+  width: 80%;
+  border-radius: 3px;
+  border:solid 1rpx #e42112;
+  color: #e42112;
+}
+.radio-box .weui-cell__bd.checked{
+  background-color: #e42112;
+  color: #fff;
+}
+.radio-box .weui-cell__bd.desabled{
+  background-color: #eee;
+  border:solid 1rpx #eee;
+  color: #888;
+}
+.radio-box .weui-cell:active{
+  background: transparent;
+}
+
+/*自定义块*/
+.flex-box{
   display: flex;
-  flex-direction: column;
+  padding: 8px 15px;
+  text-align: center;
   align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+  background-color: #fff;
+}
+.flex-box .flex-item{
+  flex: 1;
+  border-left:solid 1rpx #999; 
+}
+.flex-box .flex-item:first-child {
+  border:0;
+}
+
+/*自定义顶部时间选择*/
+.date-box .date-bar{
+  text-align: center;
+}
+.date-box .date-bar picker{
+  display: inline-block;
+  width: 46%;
+}
+
+.f12{
+  font-size: 12px;
+  line-height: 20px;
+}
+.f13{
+  font-size: 13px;
+  line-height: 20px;
+}
+.f14{
+  font-size: 14px;
+  line-height: 21px;
+}
+.f15{
+  font-size: 15px;
+  line-height: 22px;
+}
+.f16{
+  font-size: 16px;
+  line-height: 23px;
+}
+.f17{
+  font-size: 17px;
+  line-height: 24px;
+}
+.f18{
+  font-size: 18px;
+  line-height: 25px;
+}
+.f19{
+  font-size: 19px;
+  line-height: 26px;
+}
+.f20{
+  font-size: 20px;
+  line-height: 27px;
+}
+.f-zhuti{
+  color:#e42112;
+}
+.f-zhuti2{
+  color:#ef6c62;
+}
+.f-orange{
+  color: #FF6600;
+}
+.f-green{
+  color: #1AAD19
+}
+.f-red{
+  color:red;
+}
+.f-333{
+  color:#333;
+}
+.f-666{
+  color:#666;
+}
+.f-888{
+  color:#888;
+}
+.f-999{
+  color:#888;
+}
+.bg-zhuti{
+  background-color:#e42112;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.tleft{
+  text-align: left;
+}
+.tright{
+  text-align: right;
+}
+.tcenter{
+  text-align: center;
+}
+.box-sw{
+  box-shadow: 0 0 5px 1px #e5e5e5;
+}

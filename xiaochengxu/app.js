@@ -1,73 +1,26 @@
-//app.js
-import { MyApp } from 'app-model.js';
-var myapp = new MyApp();
+import { hexMD5 } from 'util/md5.js';
+ 
 
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
     wx.login({
-      success: res => {
-        var that = this;
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        var params = {
-          url : 'getmsgcode',
-          
-          type : 'POST',
-          data : {
-            mobile: '13811589793',
-            timestamp : '123456',
-            sign : 'sdfsdfsdsdf'
-          },
-          
-          sCallback : function(res){
-            console.log(res);
-          }
-        };
+     
 
-        myapp.request(params);
+      // success : res=>{},
+      success : function(res){
+        wx.setStorageSync('code', res.code);
+        var str = "device_id%3D66901022%26img_url%3Dhttp%3A%2F%2Fallonyun.oss-cn-shenzhen.aliyuncs.com%2F00000001%2Fmember%2F2101500788_01.jpg%26mem_age%3D0%26mem_hint%3DWelcome%26mem_name%3D%E4%B8%87%E8%B1%A1%E4%BA%91%E7%AB%AF%26mem_no%3D2101500788%26mem_sex%3DM%26mem_sort%3D%E6%99%AE%E9%80%9A%E4%BC%9A%E5%91%98%E5%8D%A1%26timestamp%3D1541599590%26url_type%3D1%26key%3Da479afd73bd203272a9cb36c050a2e5e";
+      str = hexMD5(str);
 
-
-
-
-        //myapp.setToken(res.code,(data)=>{
-        //    wx.setStorageSync('openid', data.openid)
-        //    wx.setStorageSync('access_key', data.access_key)
-        //});
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            lang: 'zh_CN',
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-              myapp.updateUserInfo(res.userInfo,(res)=>{
-               // console.log(res);
-              });
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
+       
+        console.log(str);
+        /*var token = wx.getStorageSync("token");
+        if (token == "") {
+          wx.reLaunch({
+            url: '/pages/login/login',
           })
-        }
+        }*/
       }
     })
-  },
-  
-  globalData: {
-    userInfo: '111',
-    openid :'',
-    session_key : ''
   }
 })

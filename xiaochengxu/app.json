@@ -1,12 +1,33 @@
 {
-  "pages":[
+  "pages"
+  : [
+    
+    "pages/login/login",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/wode/index/index",
+
+    "pages/regs/regs",
+
+    
+
+    "pages/dev/info/info",
+    "pages/dev/list/list",
+    "pages/dev/index/index",
+    "pages/income/index/index",
+  
+    "pages/dev/regs/regs",
+    
+    "pages/test/test",
+    "pages/addr/add/add",
+    "pages/addr/list/list",
+    
+    "pages/dev/upd/upd", 
+    "pages/upwd/upwd"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+  "window": {
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "dark"
   }
 }

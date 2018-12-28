@@ -1,0 +1,7 @@
+<!--pages/test/test.wxml-->
+<block wx:for="{{list}}" wx:key="*this">
+  <view><image style='width:80px;height:80px' src='{{item.img_lnk}}'></image></view>
+</block>
+
+<import src="../../lib/template/tool.wxml" />
+<template is="downLoad" data="{{...downLoadData}}"/>

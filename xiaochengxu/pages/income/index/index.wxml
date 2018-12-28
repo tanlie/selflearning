@@ -1,0 +1,160 @@
+<import src="../../../lib/template/tool.wxml" />
+<view class="page__bd">
+  <swiper current="{{ index }}" bindchange="onSwiperChange">
+    <swiper-item>
+      <scroll-view scroll-y="{{true}}" class='item sub-page1'>
+        <view class="weui-cells weui-cells_after-title noleft">
+          <view class="weui-cell weui-cell_access f13">
+            <view class="weui-cell__hd">
+              <image class='img32' src="../../../lib/img/e_shangcheng.png"></image>
+            </view>
+            <view class="weui-cell__hd">场地：</view>
+            <view class="weui-cell__bd">
+              <picker bindchange='onAddrByUserChange' value="{{byuserAddrIndex}}" range-key="name" range="{{addrs}}">
+                <view class="picker weui-select f-orange tleft">
+                  {{addrs[byuserAddrIndex].name}}
+                </view>
+              </picker>
+            </view>
+          </view>
+          <view class="weui-cell">
+              <view class="weui-cell__bd">
+                <radio-group bindchange="onDateTypesByUserChange" class="radio-box">
+                  <template is="radios" data="{{radios : dateTypesByUser}}"></template>
+                </radio-group>
+              </view>
+          </view>
+        </view>
+        <view class="weui-cells noleft f13 chat-box">
+            <view class="weui-cell tcenter">
+              <view class="weui-cell__bd f18">
+                会员消费排行
+              </view>
+            </view>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                  <view class='chat-data'>刘洋豪<view class='fr'>0.00元</view></view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                <view style='right:50%' class='chat-img'></view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                  <view class='chat-data'>liuyanghao<view class='fr'>1.00元</view></view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                <view style='right:0%' class='chat-img'></view>
+            </navigator>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y="{{true}}" class='item sub-page2'>
+        <view class="weui-cells weui-cells_after-title date-box noleft">
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__hd">
+                    <image src="../../../lib/img/e_rili.png"></image>
+                </view>
+                <view class="weui-cell__bd date-bar">
+                  <picker mode="date" value="{{date}}" start="2018-11-01" bindchange="bindDateChange">
+                    <view class="picker">{{date}}</view>
+                  </picker>
+                  <text>至</text>
+                  <picker mode="date" value="{{date}}" start="2018-11-01" bindchange="bindDateChange">
+                    <view class="picker">{{date}}</view>
+                  </picker>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                  <radio-group bindchange="onDateTypesByAddrChange" class="radio-box">
+                    <template is="radios" data="{{radios : dateTypesByAddr}}"></template>
+                  </radio-group>
+                </view>
+            </view>
+        </view>
+        <view class='tot-amt'>
+          <text>总收益：</text>
+          <text class='f-red'>110.60元</text>
+        </view>
+        <view class="flex-box">
+            <view class="flex-item">
+              <view class="f13 f-666">微信支付</view>
+              <view class="f13 f-666">110.60元</view>
+            </view>
+            <view class="flex-item">
+              <view class="f13 f-666">支付宝支付</view>
+              <view class="f13 f-666">0.00元</view>
+            </view>
+        </view>
+        <view class="weui-cells list-block">
+          <view class="weui-cell sub-title">
+              <view class="weui-cell__bd">美宜佳</view>
+          </view>
+          <view class="weui-cell sub-tot">
+              <view class="weui-cell__bd">台数：1</view>
+              <view class="weui-cell__ft"><text class='f18 f-zhuti2'>¥ 51</text></view>
+          </view>
+          <view class="weui-cell">
+              <view class="weui-cell__bd">微信支付</view>
+              <view class="weui-cell__ft"><text class='f-zhuti2'>51</text> 元</view>
+          </view>
+          <view class="weui-cell">
+              <view class="weui-cell__bd">支付宝支付</view>
+              <view class="weui-cell__ft"><text class='f-zhuti2'>0</text> 元</view>
+          </view>
+        </view>
+        <view class='show-over'></view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y="{{true}}" class='item sub-page3'>
+        <view class="weui-cells weui-cells_after-title noleft">
+          <view class="weui-cell weui-cell_access f13">
+            <view class="weui-cell__hd">
+              <image class='img32' src="../../../lib/img/e_shangcheng.png"></image>
+            </view>
+            <view class="weui-cell__hd">场地：</view>
+            <view class="weui-cell__bd">
+              <picker bindchange='onAddrByTimeChange' value="{{bytimeAddrIndex}}" range-key="name" range="{{addrs}}">
+                <view class="picker weui-select f-orange tleft">
+                  {{addrs[bytimeAddrIndex].name}}
+                </view>
+              </picker>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cells noleft f13 chat-box">
+            <view class="weui-cell tcenter">
+              <view class="weui-cell__bd f18">
+                近60天收益流水
+              </view>
+            </view>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                  <view class='chat-data'>2018-11-02<view class='fr'>0.00元</view></view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                <view style='right:50%' class='chat-img'></view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                  <view class='chat-data'>2018-11-01<view class='fr'>1.00元</view></view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                <view style='right:0%' class='chat-img'></view>
+            </navigator>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+  <view class="custom-tabs">
+    <block wx:for="{{ tabs }}" wx:key="index">
+        <view data-index="{{ item.index }}" title="" bindtap='onTabsChange' class='custom-tab {{ item.curr }}'>
+          <image src="{{ item.img }}{{ item.curr }}.png"/>
+          <view>{{ item.title }}</view>
+        </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,48 @@
+<view class="page__bd">
+  <view class="weui-cells weui-cells_after-title reg-box">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text class='f-red'>* </text>新密码</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" type='password' placeholder="请填写"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text class='f-red'>* </text>确认密码</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" type='password' placeholder="请填写"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input" style='padding-top:20px'>
+        <view class="weui-cell__hd">
+            <view class="weui-label"><text class='f-red'>* </text>手机号码</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请填写"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+          <view class="weui-label"><text class='f-red'>* </text>验证码</view>
+      </view>
+      <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请填写" />
+      </view>
+      <view class="weui-cell__ft">
+          <button class="weui-btn mini-btn" type="blue" size="mini" plain="true">获取验证码</button>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd"></view>
+      <view class="weui-cell__bd"></view>
+    </view>
+    <button class="weui-btn" type="warn" bindtap="onReg">立即重置</button>
+  </view>
+</view>
+<import src="../../lib/template/tool.wxml" />
+<view class='footer'>
+  <template is="comFooter" data="{{...comfooter}}"/>
+</view>

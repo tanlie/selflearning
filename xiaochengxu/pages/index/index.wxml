@@ -1,21 +1,63 @@
-<!--index.wxml-->
-<!-- <view class="container">
- <button bindtap="clickMe">click me</button>
- <view>{{msg1}}</view>
- <button bindtap="clickMe2">点 击 我</button>
- <view>{{msg2}}</view>
-</view>
--->
-
-<!-- 自定义弹框开始 -->
-  <view wx:if="{{showModel}}" class="model">
-    <view class="modelTitle">
-      获取微信授权信息
-    </view>
-    <view class="modelBody">微信登录需要获取您的用户信息，请前往设置</view>
-    <view class="btns">
-      <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">去设置</button>
+<view class="page__bd">
+  <view class='box1'>
+    <swiper current="{{ index }}" bindchange="onSwiperChange">
+        <swiper-item>
+          <view class='item'>
+            <image src="../../lib/img/b_bg1.jpg" mode='widthFix'/>
+            <view class='context'>
+              <text>今日收益（元）</text>
+              <text class='tot-amt'>30.00</text>
+            </view>
+            <view class='payarea'>
+              <view></view>
+              <view>
+                <text>微信支付</text>
+                <text>30000.00元</text>
+              </view>
+              <view>
+                <text>支付宝支付</text>
+                <text>0.00元</text>
+              </view>
+              <view></view>
+            </view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class='item'>
+            <image src="../../lib/img/b_bg2.jpg" mode='widthFix'/>
+            <view class='context'>
+              <text>今日设备启动</text>
+              <text class='tot-amt'>2<text>（台）</text></text>
+              <text>启动率40%</text>
+            </view>
+          </view>
+        </swiper-item>
+    </swiper>
+    <image class='jt zjt' src='../../lib/img/b_zjt.png' bindtap='onTapLeft'></image>
+    <image class='jt yjt' src='../../lib/img/b_yjt.png' bindtap='onTapRight'></image>
+    <view class="custom-tabs">
+        <block wx:for="{{ tabs }}" wx:key="index">
+            <view data-index="{{ item.index }}" title="" bindtap='onTabsChange' class='custom-tab {{ item.curr }}'>
+              <image src="{{ item.img }}{{ item.curr }}.png"/>
+              <view>{{ item.title }}</view>
+            </view>
+        </block>
     </view>
   </view>
-  <view wx:if="{{showModel}}" class="mask"></view>
-  <!-- 自定义弹框结束 -->
+  <view class='box2'>
+    <view class='title'>管理模块</view>
+    <view class="weui-grids">
+      <block wx:for="{{grids}}" wx:key="key">
+          <navigator url="{{item.url}}" class="weui-grid" hover-class="weui-grid_active">
+              <image class="weui-grid__icon" src="{{item.img}}" />
+              <view class="weui-grid__label f16">{{item.title}}</view>
+              <view class="weui-grid__label f13 f-888">{{item.desc}}</view>
+          </navigator>
+      </block>
+    </view>
+  </view>
+</view>
+<import src="../../lib/template/tool.wxml" />
+<view class='footer'>
+  <template is="comFooter" data="{{...comfooter}}"/>
+</view>

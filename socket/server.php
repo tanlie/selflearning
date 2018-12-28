@@ -15,12 +15,12 @@ use PHPSocketIO\SocketIO;
 $io = new SocketIO(3120);
 
 $io->on('workerStart', function()use($io){
-    $inner_http_worker = new Worker('http://192.168.1.147:9191');
+    $inner_http_worker = new Worker('http://192.168.0.103:9191');
     $inner_http_worker->onMessage = function($http_connection, $data)use($io){
-        if(!isset($_POST['msg'])) {
-            return $http_connection->send('fail, $_GET["msg"] not found');
+        if(!isset($_POST)) {
+            return $http_connection->send('fail, $_POST not found');
         }
-        $io->emit('chat', $_POST['msg']);
+        $io->emit('chat', json_encode($_POST));
         $http_connection->send('ok');
 
     };
@@ -29,6 +29,7 @@ $io->on('workerStart', function()use($io){
 
 // 当有客户端连接时
 $io->on('connection', function($socket)use($io){
+
     // 定义chat message事件回调函数
     $socket->on('chat', function($msg)use($io){
         // 触发所有客户端定义的chat message from server事件

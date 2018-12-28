@@ -1,21 +1,114 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+.page__bd{
+  padding-bottom: 130px;
+}
+.box1{
+  position: relative;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+/*左右箭头*/
+.box1 .jt{
+  position: absolute;width: 32px;height: 32px;top: 50%;margin-top: -32px;
+}
+.box1 .zjt{
+  left: 5px;
+}
+.box1 .yjt{
+  right: 5px;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+swiper{
+  height: 200px;
+}
+swiper .item{
+  background-color:red;width:100%;color:#fff;
+}
+swiper .item image{
+  position: absolute;z-index: 0;
+}
+/*收益信息*/
+swiper .item .context,swiper .item .payarea{
+  position: absolute;z-index: 10000000000000;
+}
+swiper .item .context{
+  text-align: center;
+  width: 100%;
+  font-size: 18px;
+}
+swiper .item .context text{
+  display: block;
+  margin-bottom: 15px;
+}
+swiper .item .context text.tot-amt{
+  font-size: 40px;
+}
+swiper .item .context text.tot-amt text{
+  font-size: 22px;
+  display: inline-block;
+}
+swiper .item .payarea{
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+}
+swiper .item .payarea text{
+  display: block;
+}
+swiper .item .payarea view{
+  -webkit-box-flex:1;
+  -webkit-flex:1;
+  flex:1;
+}
+/*tab按钮*/
+.custom-tabs{
+  width: 50%;
+  box-shadow: 0 0 5px 1px #e5e5e5;
+  border-radius: 5px;
+  position: absolute;
+  bottom:-38px;
+  background-color:#fff;
+  left: 50%;
+  margin-left: -25%;
+}
+.custom-tabs .custom-tab{
+  margin: 0 5px;
+  line-height: 15px;
+  font-size: 13px;
+  height: 50px;
+}
+.custom-tabs .custom-tab image{
+  width: 24px;
+  height:24px;
+  margin-top: 5px;
+}
+.custom-tabs .custom-tab.curr{
+  color: #ff9800;
+  border-bottom: solid 1px #ff9800;
 }
 
-.usermotto {
-  margin-top: 200px;
+/*grids 块*/
+.box2{
+  margin-top: 60px;
+  background-color: #fff;
+  display: inline-block;
+  width: 100%;
+}
+.box2 .weui-grid{
+  width: 50%;
+  text-align: left;
+  padding: 10px;
+}
+.box2 .weui-grid .weui-grid__icon{
+  width: 32px;
+  height: 32px;
+  margin: 10px 0 0 0;
+  float: left;
+}
+.box2 .weui-grid .weui-grid__label{
+  float: left;
+  margin-left: 10px;
 }

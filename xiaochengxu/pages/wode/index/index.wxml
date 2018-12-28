@@ -1,0 +1,48 @@
+<view class="page__bd">
+  <view class="weui-cells weui-cells_after-title noleft info-box">
+    <view class="weui-cell weui-cell_access">
+      <view class="weui-cell__hd">
+        <image class='img64' src="../../../lib/img/logo.png"></image>
+      </view>
+      <view class="weui-cell__bd">
+        <view>登录账号：18576008672</view>
+        <view class='f13'>商户编码：2029YY</view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-cells">
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__hd">
+            <image src="../../../lib/img/e_shangcheng.png"></image>
+          </view>
+          <view class="weui-cell__bd">
+            <view>投放地址</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__hd">
+            <image src="../../../lib/img/g_mima.png"></image>
+          </view>
+          <view class="weui-cell__bd">
+            <view>修改密码</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__hd">
+            <image  src="../../../lib/img/g_tuichu.png"></image>
+          </view>
+          <view class="weui-cell__bd">
+            <view>退出登录</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+  </view>
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd tcenter f13">服务热线：0760-88888888</view>
+    </view>
+  </view>
+  <view class='tcenter f12 f-888 time-bar'>服务时间：9:30 - 17:30</view>
+</view>
